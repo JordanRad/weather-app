@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# weather-app
+
+# Weather-App
 =======
 # Getting Started with Create React App
 
