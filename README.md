@@ -5,17 +5,17 @@ Weather app by Jordan Radushev
 ---------------
 * Clone the repo 
 ```
-$ git clone https://github.com/JordanRad/game.git
+git clone https://github.com/JordanRad/weather-app.git
 ```
 
 * Install dependencies 
 ```
-$ npm install
+npm install
 ```
 
 
 * Run the application 
 ```
-$ npm start
+npm start
 ```
 *The application will automaticaly start on localhost:3000*
