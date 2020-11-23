@@ -1,11 +1,22 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles(theme => ({
+    root: {
+        fontFamily:"'Segoe UI',sans-serif",
+        marginTop:"7px",
+        marginBottom:"17px"
+    },
+    italic:{
+        fontStyle:'italic'
+    }
+}));
 const Heading = () => {
+    const classes = useStyles();
     return ( 
-        <Container>
-            <Typography align="center" variant="h3">Weather App</Typography>
-            <Typography align="center" variant="h6">by Jordan Radushev</Typography> 
+        <Container className={classes.root}>
+            <Typography  align="center" variant="h2">Weather App</Typography>
         </Container>
      );
 }

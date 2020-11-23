@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import axios from 'axios';
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
         flex: 1,
-        marginTop:'3%',
+        marginTop: '3%',
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.palette.secondary.main,
         },
+        padding: "2%"
 
     },
     input: {
-        color: theme.palette.secondary.main,
+        color: "black",
     },
     label: {
-        color: theme.palette.secondary.main,
-        fontStyle: 'italic',
-        opacity: 0.6
+        color: theme.palette.primary.light,
+        opacity: 0.9
     },
     button: {
         flex: 0.15,
@@ -29,11 +30,29 @@ const useStyles = makeStyles(theme => ({
     },
     textField: {
         flex: 0.80,
-        color: theme.palette.secondary.main
+        color: "black"
     }
 }));
+
+const API_KEY = '4ddb30cd24fd9375c6f33d81fe8bdde7';
 const Searchbar = (props) => {
     const classes = useStyles();
+
+    const [cityName, setCityName] = useState("Eindhoven");
+
+    const onClickHandler = (e) => {
+        let typedCityName = document.getElementById('cityInput').value;
+        setCityName(typedCityName)
+    }
+
+    useEffect(() => {
+        let url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}&units=metric`;
+        axios.get(url)
+            .then(response => { props.onReciveDetailed(response.data) })
+            .catch(err => console.log("Not Found"))
+    }, [cityName])
+
+
     return (
         <div className={classes.root}>
             <TextField
@@ -41,10 +60,10 @@ const Searchbar = (props) => {
                 color="secondary"
                 id="cityInput"
                 label="Type city name" variant="outlined"
-                inputProps={{className: classes.input}}
-                InputLabelProps={{className: classes.label}}
+                inputProps={{ className: classes.input }}
+                InputLabelProps={{ className: classes.label }}
             />
-            <Button className={classes.button} variant="contained" color="secondary">Show</Button>
+            <Button className={classes.button} variant="contained" color="secondary" onClick={onClickHandler}>Show</Button>
         </div>
     );
 }

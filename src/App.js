@@ -10,15 +10,22 @@ let theme = createMuiTheme({
 
   palette: {
     primary: {
-      main: '#C7CCDB',//"#355661",
-      dark: "#767B91",
-      light: "#E1E5EE",
+      main: '#9aa3bd',//"#355661",
+      dark: "#6C799E",
+      light: "#EBEcf1",
     },
     secondary: {
-      main: "#823329",
-      light: "#2A324B"
+      main: "#EBDE97",
+      dark: "#a29138"
     },
   },
+  typography: {
+    "fontFamily": `"Segoe UI", "Helvetica", "Arial", sans-serif`,
+    "fontSize": 14,
+    "fontWeightLight": 300,
+    "fontWeightRegular": 400,
+    "fontWeightMedium": 500
+   }
 
 });
 theme = responsiveFontSizes(theme);

@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import { Container, Divider, Grid } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     root: {
@@ -9,28 +9,57 @@ const useStyles = makeStyles(theme => ({
         marginRight: "10px",
         padding: "10px"
     },
-    boxOne:{
-        backgroundColor:theme.palette.primary.main
+    box: {
+        backgroundColor: theme.palette.primary.main
     },
-    boxTwo:{
-        backgroundColor:theme.palette.primary.light
+    divider:{
+        marginBottom:'3%',
+        marginTop:'1%'
     }
 }));
-const WeatherInfoPanel = () => {
+const WeatherInfoPanel = (props) => {
     const classes = useStyles();
-    return (
-        <Container className={classes.root}>
-            <Box className={classes.boxOne} border={0} padding={2} margin={0}>
-                <Typography>City now weather</Typography>
-            </Box>
-            <Box className={classes.boxTwo} border={0} padding={2} margin={0}>
-                <Typography>Day 1 11* icon</Typography>
-                <Typography>Day 1 11* icon</Typography>
-                <Typography>Day 1 11* icon</Typography>
-                <Typography>Day 1 11* icon</Typography>
-            </Box>
-        </Container>
-    );
+
+    console.log(props.currentWeatherDetails);
+
+    if (props.currentWeatherDetails) {
+        let iconCode = props.currentWeatherDetails.weather[0].icon
+        return (
+            <Container className={classes.root}>
+                <Box className={classes.box} border={1} borderRadius="borderRadius" padding={2} margin={0}>
+                <Typography variant="h3">{props.currentWeatherDetails.country}, {props.currentWeatherDetails.city} </Typography>
+                <Divider className={classes.divider}/>
+                    <Grid container>
+                        <Grid container
+                            direction="row"
+                            alignItems="center">
+                            <Typography variant="body1">{props.currentWeatherDetails.weather[0].main}, {props.currentWeatherDetails.weather[0].description}</Typography>
+                        </Grid>
+
+                        <Grid container
+                            direction="row"
+                            justify="space-around"
+                            alignItems="center">
+                            <Typography variant="h5">
+                                Now: {props.currentWeatherDetails.temperatureNow.temp.toFixed(1)}°C
+                            </Typography>
+                            <img src={`http://openweathermap.org/img/wn/${iconCode}@2x.png`} />
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Container>
+        );
+    } else {
+        return (
+            <Container className={classes.root}>
+                <Box className={classes.box} border={1} borderRadius="borderRadius" padding={2} margin={0}>
+                    <Container>
+                        <Typography variant="h6">No selected city</Typography>
+                    </Container>
+                </Box>
+            </Container>
+        )
+    }
 }
 
 export default WeatherInfoPanel;
