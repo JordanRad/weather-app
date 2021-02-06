@@ -9,7 +9,7 @@ git clone https://github.com/JordanRad/weather-app.git
 ```
 * Get into project's folder 
 ```
-npm install
+cd game
 ```
 * Install dependencies 
 ```
