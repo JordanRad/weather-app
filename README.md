@@ -1,8 +1,8 @@
 Weather app by Jordan Radushev 
 ===================
 See the demo deployed here: https://vibrant-visvesvaraya-af9568.netlify.app/
-### Instructions to use on your local computer: ###
----------------
+## Instructions to set-up the project locally
+
 * Clone the repo 
 ```
 git clone https://github.com/JordanRad/weather-app.git
