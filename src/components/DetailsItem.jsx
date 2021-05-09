@@ -6,7 +6,7 @@ const DetailsItem = (props) => {
     return (
         <Grid container
             direction="row"
-            justify="space-between"
+            justify="space-around"
             alignItems="center">
             <Typography variant="body1">{props.todayString}</Typography>
             <Typography variant="body1">{props.temp}°C</Typography>

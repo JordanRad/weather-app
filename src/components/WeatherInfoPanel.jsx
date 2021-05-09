@@ -13,8 +13,8 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.primary.main
     },
     divider:{
-        marginBottom:'3%',
-        marginTop:'1%'
+        margin:'12px auto',
+        background:"black"
     }
 }));
 const WeatherInfoPanel = (props) => {
@@ -27,7 +27,7 @@ const WeatherInfoPanel = (props) => {
         return (
             <Container className={classes.root}>
                 <Box className={classes.box} border={1} borderRadius="borderRadius" padding={2} margin={0}>
-                <Typography variant="h3">{props.currentWeatherDetails.country}, {props.currentWeatherDetails.city} </Typography>
+                <Typography variant="h3"><sup>&nbsp;{props.currentWeatherDetails.country}&nbsp;</sup> {props.currentWeatherDetails.city} </Typography>
                 <Divider className={classes.divider}/>
                     <Grid container>
                         <Grid container
@@ -41,7 +41,7 @@ const WeatherInfoPanel = (props) => {
                             justify="space-around"
                             alignItems="center">
                             <Typography variant="h5">
-                                Now: {props.currentWeatherDetails.temperatureNow.temp.toFixed(1)}°C
+                                Now: &nbsp; <strong> {props.currentWeatherDetails.temperatureNow.temp.toFixed(0)}°C</strong>
                             </Typography>
                             <img src={`http://openweathermap.org/img/wn/${iconCode}@2x.png`} />
                         </Grid>

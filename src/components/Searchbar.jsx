@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         color: "black",
     },
     label: {
-        color: theme.palette.primary.light,
+        color: "black",
         opacity: 0.9
     },
     button: {
@@ -33,14 +32,14 @@ const useStyles = makeStyles(theme => ({
         color: "black"
     }
 }));
-
 const API_KEY = '4ddb30cd24fd9375c6f33d81fe8bdde7';
 const Searchbar = (props) => {
     const classes = useStyles();
 
     const [cityName, setCityName] = useState("Eindhoven");
-
+    const [notFound, setNotFound] = useState(false)
     const onClickHandler = (e) => {
+        console.log(notFound)
         let typedCityName = document.getElementById('cityInput').value;
         setCityName(typedCityName)
     }
@@ -48,8 +47,13 @@ const Searchbar = (props) => {
     useEffect(() => {
         let url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}&units=metric`;
         axios.get(url)
-            .then(response => { props.onReciveDetailed(response.data) })
-            .catch(err => console.log("Not Found"))
+            .then(response => { 
+                props.onReciveDetailed(response.data)
+             })
+            .catch(err => {
+                alert("Such city name probably does not exist")
+                console.log("Not Found")
+            })
     }, [cityName])
 
 
@@ -64,6 +68,7 @@ const Searchbar = (props) => {
                 InputLabelProps={{ className: classes.label }}
             />
             <Button className={classes.button} variant="contained" color="secondary" onClick={onClickHandler}>Show</Button>
+            
         </div>
     );
 }

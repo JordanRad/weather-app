@@ -38,11 +38,9 @@ const Home = () => {
     const classes = useStyles();
     const [weatherData, setData] = useState(null);
 
-    
     const updateWeatherData = (weatherData) => {
         setData(weatherData);
     }
-
 
     let currentWeatherDetails, filteredByToday,filteredByTomorrow, filteredNextDays;
 
@@ -70,9 +68,6 @@ const Home = () => {
         filteredByTomorrow =temp.slice(0,8);
 
         filteredNextDays = temp.slice(8,temp.length-filteredByToday.length);
-        //console.log(filteredByToday);
-        // console.log(filteredNext3Days);
-
     }
     return (
         <Grid className={classes.root}>

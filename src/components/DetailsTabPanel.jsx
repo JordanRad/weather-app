@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.primary.main,
     margin: "10px",
-    marginTop:"0",
+    marginTop: "0",
     marginRight: "20px",
-    width:'100%'
+    width: '100%'
   },
   hidden: {
     display: 'none'
@@ -74,8 +74,8 @@ const DetailsTabPanel = (props) => {
         <DetailsItem
           key={index}
           todayString={todayString}
-          temp={item.main.temp.toFixed(1)}
-          iconURL={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
+          temp={item.main.temp.toFixed(0)}
+          iconURL={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
         />
       )
     })
@@ -90,8 +90,8 @@ const DetailsTabPanel = (props) => {
         <DetailsItem
           key={index * 12}
           todayString={todayString}
-          temp={item.main.temp.toFixed(1)}
-          iconURL={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
+          temp={item.main.temp.toFixed(0)}
+          iconURL={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
         />
       )
 
@@ -101,14 +101,16 @@ const DetailsTabPanel = (props) => {
     //Third Tab content
     nextDaysItemsList = props.nextDays.map((item, index) => {
       let date = new Date(item.dt * 1000)
-      if (date.getHours() - 1 === 6 || date.getHours() - 1 === 15) {
+      let validHours = [5,6,7,14,15,16]
+      if (validHours.includes(date.getHours())) {
         let todayString = `${convertNumberToDayString(date.getDay())} ${date.getHours() - 1}:00 `;
+        console.log(todayString,item.main.temp)
         return (
           <DetailsItem
-            key={index * 8}
+            key={index * 133}
             todayString={todayString}
-            temp={item.main.temp.toFixed(1)}
-            iconURL={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
+            temp={item.main.temp.toFixed(0)}
+            iconURL={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
           />
         )
       }

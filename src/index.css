@@ -4,13 +4,25 @@ body {
   font-family:  'Roboto',sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 body > #root > div {
-  height: 100vh;
+  height: 150vh;
   width: 100% !important;
   flex-grow: 1 !important;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+h3{
+  font-size: 1.6em !important	;
+}
+sup{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 6px;
+  margin-right: 1px;
+  background-color: #6C799E;
+  color: black;
 }
